@@ -1,0 +1,453 @@
+body{
+    background-color: #000;
+    color: white;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+a:hover{
+    color: orange;
+}
+header{
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+header a{
+    margin-right: 40px;
+}
+.slider{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: -50px;
+    position: relative;
+}
+.slider .slides .slide{
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.slider .slides .slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slider .slides .slide .info{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+.slider .slides .slide .info .author{
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+.slider .slides .slide .info .title,
+.slider .slides .slide .info .topic{
+    font-size: 0.5rem;
+    font-weight: bold;
+    line-height: 0;
+}
+.slider .slides .slide .info .topic{
+    color: orange;
+}
+.slider .slides .slide .info .des{
+    margin-bottom: 10px;
+}
+.slider .slides .slide .info .buttons{
+    display: grid;
+    grid-template-columns: repeat(2,130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.slider .slides .slide .info button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: poppins;
+    font-weight: 500;
+    border-radius: 27px;
+}
+.slider .slides .slide .info button:nth-child(2){
+    background-color: transparent;
+    color: #eee;
+    border: 1px solid #eee;
+    border-radius: 27px;
+}
+/*thumbs*/
+.thumbs{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 22px;
+}
+.thumbs .slide{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+.thumbs .slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.thumbs .slide .info{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbs .slide .info .title{
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+.thumbs .slide .info .des{
+    line-height: 1.2;
+}
+/*controls*/
+.controls{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    width: 300px;
+    max-width: 30%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.controls button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:orange;
+    border: none;
+    font-family: monospace;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    transition: .5s;
+    z-index: 100;
+}
+.controls button:hover{
+    background-color: white;
+    color: #555;
+}
+.slider .slides .slide:nth-child(1){
+    z-index: 1;
+}
+.slider .slides .slide:nth-child(1) .author,
+.slider .slides .slide:nth-child(1) .title,
+.slider .slides .slide:nth-child(1) .topic,
+.slider .slides .slide:nth-child(1) .des,
+.slider .slides .slide:nth-child(1) .buttons{
+transform: translateY(50px);
+filter: blur(20px);
+opacity: 0;
+animation: revealInfo 0.3s 1s linear 1 forwards;
+}
+@keyframes revealInfo{
+    to{
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+.slider .slides .slide:nth-child(1) .title{
+    animation-delay: 1.2s;
+}
+.slider .slides .slide:nth-child(1) .topic{
+    animation-delay: 1.4s;
+}
+.slider .slides .slide:nth-child(1) .des{
+    animation-delay: 1.6s;
+}
+.slider .slides .slide:nth-child(1) .buttons{
+    animation-delay: 1.8s;
+}
+
+/*slider next click*/
+.slider.next .slides .slide:nth-child(1) img{
+   width: 150px;
+   height: 220px;
+   position: absolute;
+   left: 50%;
+   bottom: 50px;
+   border-radius: 20px;
+   animation: expandImage 0.4s linear 1 forwards;
+}
+@keyframes expandImage{
+    to{
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+}
+.slider.next .thumbs .slide:nth-child(1) img{
+    width: 0;
+    overflow: hidden;
+    animation: revealThumb .4s linear 1 forwards;
+}
+@keyframes revealThumb{
+    to{
+        width: 150px;
+    }
+}
+.slider.next .thumbs{
+    transform: translateX(0);
+}
+
+/*effect prev click*/
+.slider.prev .slides .slide:nth-child(2){
+    z-index: 2;
+}
+.slider.prev .slides .slide:nth-child(2) img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: shrinkImage 0.4s linear 1 forwards;
+}
+@keyframes shrinkImage{
+    to{
+        width: 150px;
+        height: 220px;
+        border-radius: 20px;
+        left: 50%;
+        bottom: 50px;
+    }
+}
+.slider.prev .thumbs .slide:nth-child(1){
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    animation: revealThumb 0.4s linear 1 forwards;
+}
+.slider.prev .slides .slide:nth-child(2) .author,
+.slider.prev .slides .slide:nth-child(2) .title,
+.slider.prev .slides .slide:nth-child(2) .topic,
+.slider.prev .slides .slide:nth-child(2) .des,
+.slider.prev .slides .slide:nth-child(2) .buttons{
+    animation: hideInfo 1.2s linear 1 forwards;
+}
+@keyframes hideInfo{
+    to{
+        opacity: 0;
+        filter: blur(28px);
+        transform: translateY(-150px);
+    }
+}
+.slider.next .controls button,
+.slider.prev .controls button{
+    pointer-events: none;
+}
+/*progress*/
+.progress{
+    width: 100%;
+    height: 4px;
+    background-color: orange;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+.slider.next .progress,
+.slider.prev .progress{
+    width: 100%;
+    animation: progressBar 2s linear 1 forwards;
+}
+@keyframes progressBar{
+    to{
+        width: 0;
+    }
+}
+
+/* Responsive Media Queries */
+/* Mobile Small (up to 480px) */
+@media screen and (max-width: 480px){
+    header{
+        width: 90%;
+        height: 40px;
+    }
+    header a{
+        font-size: 16px;
+        margin-right: 20px;
+    }
+    .slider{
+        height: 90vh;
+        margin-top: -40px;
+    }
+    .slider .slides .slide .info{
+        top: 15%;
+        width: 90%;
+        padding-right: 10%;
+        left: 5%;
+        transform: translateX(0);
+    }
+    .slider .slides .slide .info .title,
+    .slider .slides .slide .info .topic{
+        font-size: 2.5rem;
+        line-height: 1.4;
+    }
+    .slider .slides .slide .info .des{
+        margin-bottom: 8px;
+    }
+    .slider .slides .slide .info .buttons{
+        grid-template-columns: repeat(2,100px);
+        grid-template-rows: 35px;
+        gap: 3px;
+        margin-top: 15px;
+        font-size: 10px;
+    }
+    .thumbs{
+        bottom: 30px;
+        gap: 10px;
+    }
+    .thumbs .slide{
+        width: 100px;
+        height: 150px;
+    }
+    .thumbs .slide .info .title{
+        line-height: 1.1;
+        margin-bottom: 3px;
+    }
+    .thumbs .slide .info .des{
+        line-height: 1.1;
+    }
+    .controls{
+        top: 85%;
+        right: 40%;
+        width: 200px;
+        gap: 5px;
+    }
+    .controls button{
+        width: 35px;
+        height: 35px;
+        font-size: medium;
+    }
+}
+
+/* Tablet (up to 768px) */
+@media screen and (max-width: 768px){
+    header{
+        width: 95%;
+    }
+    .slider .slides .slide .info{
+        top: 18%;
+        width: 85%;
+        padding-right: 20%;
+    }
+    .slider .slides .slide .info .title,
+    .slider .slides .slide .info .topic{
+        font-size: 2.5rem;
+        line-height: 1.4;
+        margin-top: 10px;
+         margin-bottom: 10px;
+    }
+    .slider .slides .slide .info .des{
+        margin-bottom: 16px;
+        margin-top: 16px;
+    }
+    .slider .slides .slide .info .buttons{
+        grid-template-columns: repeat(2,120px);
+        grid-template-rows: 38px;
+        gap: 4px;
+    }
+    .thumbs{
+        bottom: 40px;
+        gap: 15px;
+    }
+    .thumbs .slide{
+        width: 120px;
+        height: 180px;
+    }
+    .thumbs .slide .info .title{
+        line-height: 1.2;
+        margin-bottom: 4px;
+    }
+    .thumbs .slide .info .des{
+        line-height: 1.2;
+    }
+    .controls{
+        top: 82%;
+        right: 45%;
+        width: 250px;
+    }
+    .controls button{
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* Desktop Large (from 1200px) */
+@media screen and (min-width: 1200px){
+    header{
+        width: 1200px;
+    }
+    .slider .slides .slide .info{
+        width: 1200px;
+        padding-right: 35%;
+        top: 30%;
+    }
+    .slider .slides .slide .info .title,
+    .slider .slides .slide .info .topic{
+        font-size: 4rem;
+        line-height: 1.5;
+    }
+    .slider .slides .slide .info .des{
+        margin-bottom: 12px;
+    }
+    .slider .slides .slide .info .buttons{
+        grid-template-columns: repeat(2,150px);
+        grid-template-rows: 45px;
+        gap: 8px;
+        margin-top: 25px;
+    }
+    .thumbs{
+        bottom: 60px;
+        gap: 25px;
+    }
+    .thumbs .slide{
+        width: 180px;
+        height: 250px;
+    }
+    .thumbs .slide .info .title{
+        line-height: 1.3;
+        margin-bottom: 6px;
+    }
+    .thumbs .slide .info .des{
+        line-height: 1.3;
+    }
+    .controls{
+        top: 78%;
+        right: 50%;
+        width: 350px;
+    }
+    .controls button{
+        width: 45px;
+        height: 45px;
+    }
+}
