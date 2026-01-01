@@ -14,6 +14,7 @@ This is a highly interactive animated slider designed to showcase content with s
 
 ## 🖼️ Preview
 
+![Portfolio Preview](https://github.com/roghaye84/anime-slider/blob/main/assest/Screenshot_1-1-2026_144236_roghaye84.github.io.jpeg)
 ---
 
 ## ✨ Features
